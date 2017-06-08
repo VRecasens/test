@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:head>
+	</h:head>
+
+	<h:body>
+		<h1>Invitation JSF</h1>
+		<h:form>
+			<h:outputLabel styleClass="label" value="Personnes : " />
+
+			<p:selectOneMenu value="#{invitationBean.idPersonneInvite}"
+				effect="fold" editable="false">
+
+				<f:selectItems value="#{invitationBean.listPersonne}" var="personne"
+					itemLabel="#{personne.nom} #{personne.prenom}"
+					itemValue="#{personne.id}" />
+				<p:message for="personne" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<p:inputTextarea id="message" row="10" cols="50"
+				completeMethod="#{inputTextareaView.completeArea}" queryDelay="750"
+				value="#{invitationBean.invitation.message}" />
+			<br />
+
+			<p:commandButton value="Inviter" action="#{invitationBean.envoyer}"
+				ajax="true">
+				<f:ajax execute="@form" render="@form" />
+			</p:commandButton>
+		</h:form>
+		<h:form>
+			<p:commandButton value="Modifier mot de passe"
+				action="#{majMdpBean.accessMajMdp}">
+			</p:commandButton>
+		</h:form>
+		<h:form>
+			<p:commandButton value="Déconnexion"
+				action="#{loginBean.logoutConnexion}">
+			</p:commandButton>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:head>
+	</h:head>
+
+	<h:body>
+		<h1>Mise à jour de votre mot de passe</h1>
+		<h:form>
+			<p:fieldset>
+				<h:outputLabel value="Ancien mot de passe"></h:outputLabel>
+				<p:password id="oldMdp" value="#{majMdpBean.oldMdp}" />
+				<p:message for="oldMdp"/>
+				<br />
+				<h:outputLabel value="Nouveau mot de passe"></h:outputLabel>
+				<p:password id="newMdp" value="#{majMdpBean.newMdp}" />
+				<p:message for="newMdp"/>
+				<br />
+				<h:outputLabel value="Vérifier nouveau mot de passe"></h:outputLabel>
+				<p:password id="checkNewMdp" value="#{majMdpBean.checkNewMdp}" />
+				<p:message for="checkNewMdp"/>
+				<p:commandButton action="#{majMdpBean.validationMdp}" value="Login"></p:commandButton>
+			</p:fieldset>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
