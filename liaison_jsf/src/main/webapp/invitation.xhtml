@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view>
+	<h:body>
+	
+		<f:subview id="header">
+			<ui:include src="include/header.xhtml" />
+		</f:subview>
+
+		<h1>Invitation</h1>
+		<h:form>
+			<h:outputLabel styleClass="label" value="Personnes : " />
+
+			<p:selectOneMenu value="#{invitationBean.idPersonneInvite}"
+				effect="fold" editable="false">
+
+				<f:selectItems value="#{invitationBean.listPersonne}" var="personne"
+					itemLabel="#{personne.nom} #{personne.prenom}"
+					itemValue="#{personne.id}" />
+				<p:message for="personne" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<p:inputTextarea id="message" row="10" cols="50"
+				completeMethod="#{inputTextareaView.completeArea}" queryDelay="750"
+				value="#{invitationBean.invitation.message}" />
+			<br />
+
+			<p:commandButton value="Inviter" action="#{invitationBean.envoyer}"
+				ajax="true">
+				<f:ajax execute="@form" render="@form" />
+			</p:commandButton>
+		</h:form>
+		<h:form>
+			<p:commandButton value="Modifier mot de passe"
+				action="#{majMdpBean.accessMajMdp}">
+			</p:commandButton>
+		</h:form>
+		<h:form enctype="multipart/form-data">
+			<p:growl id="messages" showDetail="true" />
+
+			<p:fileUpload value="#{fileUploadView.file}" mode="simple"
+				skinSimple="true" />
+			<p:commandButton value="Submit" ajax="false"
+				actionListener="#{fileUploadView.upload}" disabled="false" />
+		</h:form>
+		
+		
+		<h:form>
+			<p:commandButton value="Déconnexion"
+				action="#{loginBean.logoutConnexion}">
+			</p:commandButton>
+		</h:form>
+
+	</h:body>
+</f:view>
+</html>

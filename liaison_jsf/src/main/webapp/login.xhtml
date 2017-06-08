@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view>
+	<h:body>
+		<f:subview id="header">
+			<ui:include src="include/header.xhtml" />
+		</f:subview>
+		<h1>Invitation JSF</h1>
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+			<p:fieldset>
+				<h:outputLabel value="Login"></h:outputLabel>
+				<p:inputText id="email" value="#{loginBean.email}" />
+				<p:message for="email" />
+				<br />
+				<h:outputLabel value="Password"></h:outputLabel>
+				<p:password id="password" value="#{loginBean.motDePasse}" />
+				<p:message for="password" />
+				<p:commandButton action="#{loginBean.validConnexion}" value="Login"></p:commandButton>
+			</p:fieldset>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
